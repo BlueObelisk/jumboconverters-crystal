@@ -10,14 +10,14 @@
         <relativePath>../../pom.xml</relativePath>
     </parent>
 
-    <artifactId>jumbo-converters-crystal-all</artifactId>
-    <name>jumbo-converters-crystal-all</name>
+    <artifactId>jc-crystal-all</artifactId>
+    <name>jc-crystal-all</name>
     <packaging>pom</packaging>
 	
     <dependencies>
         <dependency>
             <groupId>cml</groupId>
-            <artifactId>jumbo-converters-crystal-cif</artifactId>
+            <artifactId>jc-crystal-cif</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>

@@ -9,13 +9,13 @@
         <version>0.3-SNAPSHOT</version>
     </parent>
 
-    <artifactId>jumbo-converters-crystal</artifactId>
+    <artifactId>jc-crystal</artifactId>
     <packaging>pom</packaging>
-    <name>jumbo-converters-crystal</name>
+    <name>jc-crystal</name>
 
     <modules>
-        <module>jumbo-converters-crystal-all</module>
-        <module>jumbo-converters-crystal-cif</module>
+        <module>jc-crystal-all</module>
+        <module>jc-crystal-cif</module>
     </modules>
 
 
