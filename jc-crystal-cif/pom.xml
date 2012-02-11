@@ -6,7 +6,7 @@
 
     <parent>
         <groupId>cml</groupId>
-        <artifactId>jumbo-converters</artifactId>
+        <artifactId>jumboconverters2-parent</artifactId>
         <version>0.3-SNAPSHOT</version>
     </parent>
 
@@ -37,6 +37,7 @@
          <dependency>
             <groupId>java3d</groupId>
             <artifactId>vecmath</artifactId>
+            <version>${java3d.version}</version>
         </dependency>
 
         <dependency>
