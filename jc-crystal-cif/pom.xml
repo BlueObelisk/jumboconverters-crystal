@@ -14,6 +14,11 @@
     <name>jc-crystal-cif</name>
 
     <dependencies>
+       <dependency>
+            <groupId>cml</groupId>
+            <artifactId>jc-top-core</artifactId>
+            <version>${project.version}</version>
+        </dependency>
         <dependency>
             <groupId>cdk</groupId>
             <artifactId>cdk</artifactId>
@@ -24,32 +29,10 @@
             <artifactId>cifxom</artifactId>
             <version>1.5-SNAPSHOT</version>
         </dependency>
-        <dependency>
-            <groupId>${jumbo.groupId}</groupId>
-            <artifactId>jumbo</artifactId>
-            <version>${jumbo.version}</version>
-        </dependency>
-       <dependency>
-            <groupId>cml</groupId>
-            <artifactId>jc-top-core</artifactId>
-            <version>${project.version}</version>
-        </dependency>
          <dependency>
             <groupId>java3d</groupId>
             <artifactId>vecmath</artifactId>
             <version>${java3d.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>cml</groupId>
-            <artifactId>jc-top-testutils</artifactId>
-            <version>${project.version}</version>
-            <scope>test</scope>
         </dependency>
 
     </dependencies>
