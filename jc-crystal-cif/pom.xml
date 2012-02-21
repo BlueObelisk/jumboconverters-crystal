@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>cml</groupId>
+        <groupId>org.xml-cml.jc</groupId>
         <artifactId>jc-crystal</artifactId>
         <version>0.3-SNAPSHOT</version>
     </parent>
@@ -15,22 +15,22 @@
 
     <dependencies>
        <dependency>
-            <groupId>cml</groupId>
+            <groupId>${jc.groupId}</groupId>
             <artifactId>jc-top-core</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>cdk</groupId>
-            <artifactId>cdk</artifactId>
-            <version>20071025</version>
+            <groupId>${cdk.groupId}</groupId>
+            <artifactId>${cdk.artifact}</artifactId>
+            <version>${cdk.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.xml-cml</groupId>
+            <groupId>${cif.groupId}</groupId>
             <artifactId>cifxom</artifactId>
             <version>1.5-SNAPSHOT</version>
         </dependency>
          <dependency>
-            <groupId>java3d</groupId>
+            <groupId>${java3d.groupId}</groupId>
             <artifactId>vecmath</artifactId>
             <version>${java3d.version}</version>
         </dependency>
