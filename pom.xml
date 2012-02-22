@@ -21,6 +21,7 @@
 	</repositories>
 	
     <modules>
+        <module>jc-crystal-core</module>
         <module>jc-crystal-all</module>
         <module>jc-crystal-cif</module>
     </modules>
