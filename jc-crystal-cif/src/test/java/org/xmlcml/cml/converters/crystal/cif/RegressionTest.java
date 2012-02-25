@@ -5,9 +5,10 @@
 package org.xmlcml.cml.converters.crystal.cif;
 
 import org.junit.Assert;
+
 import org.junit.Ignore;
 import org.junit.Test;
-import org.xmlcml.cml.converters.testutils.RegressionSuite;
+import org.xmlcml.cml.converters.testutils.JumboConvertersRegressionSuite;
 
 /**
  *
@@ -27,14 +28,14 @@ public class RegressionTest {
    @Test
    @Ignore("Ignorable whitespace in mixed content causing problems agains")
    public void cif2cifxml() {
-      RegressionSuite.run("cif/cif", "cif", "cif.xml",
+      JumboConvertersRegressionSuite.run("cif/cif", "cif", "cif.xml",
                             new CIF2CIFXMLConverter());
    }
 
    @Test
    @Ignore("Ignorable whitespace in mixed content causing problems agains")
    public void cifxml2cml() {
-      RegressionSuite.run("cif/cifxml", "xml", "cml",
+      JumboConvertersRegressionSuite.run("cif/cifxml", "xml", "cml",
                             new CIFXML2CMLConverter());
    }
 

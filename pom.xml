@@ -1,50 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <modelVersion>4.0.0</modelVersion>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>org.xml-cml.jc</groupId>
-        <artifactId>jc-parent</artifactId>
-        <version>0.3-SNAPSHOT</version>
-    </parent>
+	<parent>
+		<groupId>org.xml-cml.jc</groupId>
+		<artifactId>jc-parent</artifactId>
+		<version>0.3-SNAPSHOT</version>
+	</parent>
 
-    <artifactId>jc-crystal</artifactId>
-    <packaging>pom</packaging>
-    <name>jc-crystal</name>
+	<artifactId>jc-crystal</artifactId>
+	<name>jc-crystal</name>
+	<packaging>pom</packaging>
 
 	<repositories>
-	  <repository>
-	    <id>ucc-repo</id>
-	    <url>http://maven.ch.cam.ac.uk/m2repo</url>
-	  </repository>
+		<repository>
+			<id>ucc-repo</id>
+			<url>http://maven.ch.cam.ac.uk/m2repo</url>
+		</repository>
 	</repositories>
-	
-    <modules>
-        <module>jc-crystal-core</module>
-        <module>jc-crystal-all</module>
-        <module>jc-crystal-cif</module>
-    </modules>
 
-    <dependencies>
-        <dependency>
-            <groupId>${jc.groupId}</groupId>
-            <artifactId>jc-top-core</artifactId>
-            <version>${project.version}</version>
-        </dependency>
+	<modules>
+		<module>jc-crystal-core</module>
+		<module>jc-crystal-cif</module>
+		<module>jc-crystal-all</module>
+	</modules>
 
+	<dependencies>
+	<!-- 
+		<dependency>
+			<groupId>${jc.groupId}</groupId>
+			<artifactId>jc-top-core</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+-->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<scope>test</scope>
 		</dependency>
+		
 		<dependency>
 			<groupId>${jc.groupId}</groupId>
 			<artifactId>jc-top-testutils</artifactId>
-            <version>${project.version}</version>
-			<scope>test</scope>
+			<version>${project.version}</version>
 		</dependency>
-    </dependencies>
+	</dependencies>
 
 </project>
 

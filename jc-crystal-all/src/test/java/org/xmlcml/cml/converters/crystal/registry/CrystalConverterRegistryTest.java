@@ -1,8 +1,6 @@
 package org.xmlcml.cml.converters.crystal.registry;
 
 import static org.junit.Assert.assertNull;
-
-
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
@@ -13,40 +11,43 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.xmlcml.cml.converters.Converter;
 import org.xmlcml.cml.converters.MimeType;
+import org.xmlcml.cml.converters.TypePair;
 import org.xmlcml.cml.converters.cml.CML2CMLLiteConverter;
 import org.xmlcml.cml.converters.cml.CMLCommon;
-import org.xmlcml.cml.converters.crystal.registry.CrystalConverterRegistry;
-import org.xmlcml.cml.converters.registry.ConverterRegistry;
-import org.xmlcml.cml.converters.registry.TypePair;
 import org.xmlcml.cml.converters.crystal.cif.CIFModule;
+import org.xmlcml.cml.converters.registry.ConverterRegistry;
 
 public class CrystalConverterRegistryTest {
 
 	String CML = "chemical/x-cml";
-	String CIF = "chemical/x-cif";
+	String CDX = "chemical/x-cdx";
 	String FOO = "chemical/x-foo";
 	TypePair PAIR_OK  = new TypePair(FOO, CML);
-	TypePair PAIR_MISSING  = new TypePair(FOO, CIF);
-	private static int SIZE = 6;
+	TypePair PAIR_MISSING  = new TypePair(CML, CDX);
+	int MAP_SIZE = 13;
+	int CONVERTER_SIZE = 14;
 
     @Test
     public void testMap() {
-    	Map<TypePair, List<Converter>> map = CrystalConverterRegistry.getDefaultConverterRegistry().getMap();
+    	Map<TypePair, List<Converter>> map = ConverterRegistry.getDefaultConverterRegistry().getMap();
     	Assert.assertNotNull(map);
     	// size will change as more are added
-    	Assert.assertEquals(SIZE, map.size());
+    	Assert.assertTrue(MAP_SIZE <= map.size());
     }
 
     @Test
     public void testList() {
-    	List<Converter> converterList = CrystalConverterRegistry.getDefaultConverterRegistry().getConverterList();
+    	List<Converter> converterList = ConverterRegistry.getDefaultConverterRegistry().getConverterList();
     	Assert.assertNotNull(converterList);
-    	Assert.assertEquals(SIZE, converterList.size());
+    	for (Converter converter : converterList) {
+    		System.out.println(converter);
+    	}
+    	Assert.assertTrue(CONVERTER_SIZE <= converterList.size());
     }
 
     @Test
     public void testList1() {
-    	List<Converter> converterList = CrystalConverterRegistry.getDefaultConverterRegistry().getConverterList();
+    	List<Converter> converterList = ConverterRegistry.getDefaultConverterRegistry().getConverterList();
     	boolean found = false;
     	for (Converter converter : converterList) {
     		if (CML2CMLLiteConverter.class.equals(converter.getClass())) {
@@ -59,7 +60,7 @@ public class CrystalConverterRegistryTest {
 
     @Test
     public void testMap1() {
-    	Map<TypePair, List<Converter>> map = CrystalConverterRegistry.getDefaultConverterRegistry().getMap();
+    	Map<TypePair, List<Converter>> map = ConverterRegistry.getDefaultConverterRegistry().getMap();
     	Assert.assertTrue(map.containsKey(PAIR_OK));
     	Assert.assertFalse(map.containsKey(PAIR_MISSING));
     	for (TypePair typePair1 : map.keySet()) {
@@ -69,49 +70,46 @@ public class CrystalConverterRegistryTest {
 
     @Test
     public void testFindConverter() {
-    	List<Converter> converters = CrystalConverterRegistry.getDefaultConverterRegistry().findConverters(
+    	List<Converter> converters = ConverterRegistry.getDefaultConverterRegistry().findConverters(
     			CIFModule.CIF_TYPE.getMimeType(), CMLCommon.CML_TYPE.getMimeType());
     	Assert.assertNotNull("cif", converters);
     	for (Converter converter : converters) {
     		System.out.println("Converter: "+converter);
     	}
-    	Assert.assertEquals("cif", 2, converters.size());
+    	Assert.assertEquals("cif", 1, converters.size());
     	Assert.assertEquals("cif", "org.xmlcml.cml.converters.crystal.cif.CIF2CMLConverter", converters.get(0).getClass().getName());
     }
 
     @Test
     public void testFindConverter1() {
-    	List<Converter> converters = CrystalConverterRegistry.getDefaultConverterRegistry().findConverters(CML, CML);
+    	List<Converter> converters = ConverterRegistry.getDefaultConverterRegistry().findConverters(CML, CML);
     	Assert.assertNotNull("cml", converters);
-//    	for (Converter converter : converters) {
-//    		System.out.println(converter);
-//    	}
     	Assert.assertEquals("cml", 2, converters.size());
     }
 
 	@Test
 	public void testRegistryLoadsConverterList() {
-		List<Converter> list = CrystalConverterRegistry.getDefaultConverterRegistry().getConverterList();
+		List<Converter> list = ConverterRegistry.getDefaultConverterRegistry().getConverterList();
 		assertTrue(list.size()>0);
 	}
 
 	@Test
 	public void testFindFoo2BarConverter() {
-		List<Converter> converterList = CrystalConverterRegistry.getDefaultConverterRegistry().findConverters("foo", "bar");
+		List<Converter> converterList = ConverterRegistry.getDefaultConverterRegistry().findConverters("foo", "bar");
 		assertNull(converterList);
 	}
 
 	@Test
 	public void testFindTypesFromSuffix() {
-		Set<MimeType> types = CrystalConverterRegistry.getDefaultConverterRegistry().getTypes("cml");
+		Set<MimeType> types = ConverterRegistry.getDefaultConverterRegistry().getTypes("cml");
 		Assert.assertNotNull("get types", types);
-		Assert.assertEquals("get types", 1, types.size());
+		Assert.assertEquals("get types", 2, types.size());
 		Assert.assertEquals("get types", "chemical/x-cml", ((MimeType)types.toArray()[0]).getMimeType());
 	}
 
 	@Test
 	public void testFindTypesFromSuffix1() {
-		Set<MimeType> types = CrystalConverterRegistry.getDefaultConverterRegistry().getTypes("foo");
+		Set<MimeType> types = ConverterRegistry.getDefaultConverterRegistry().getTypes("foo");
 		Assert.assertNotNull("get types", types);
 		Assert.assertEquals("types count", 1, types.size());
 		Assert.assertEquals("type", "chemical/x-foo", ((MimeType)types.toArray()[0]).getMimeType());
@@ -119,14 +117,13 @@ public class CrystalConverterRegistryTest {
 
 	@Test
 	public void testFindSingleTypeFromSuffix() {
-		MimeType type = CrystalConverterRegistry.getDefaultConverterRegistry().getSingleTypeFromSuffix("cml");
-		Assert.assertNotNull("get type", type);
-		Assert.assertEquals("get type", "chemical/x-cml", type.getMimeType());
+		MimeType type = ConverterRegistry.getDefaultConverterRegistry().getSingleTypeFromSuffix("cml");
+		Assert.assertNull("get type", type);
 	}
 
 	@Test
 	public void testSingletonConverterRegistry() {
-		Assert.assertNotNull(CrystalConverterRegistry.getDefaultConverterRegistry());
+		Assert.assertNotNull(ConverterRegistry.getDefaultConverterRegistry());
 	}
 
 	@Test
@@ -141,36 +138,32 @@ public class CrystalConverterRegistryTest {
 
 	@Test
 	public void testCreateRegistryList() {
-		ConverterRegistry converterRegistry = new CrystalConverterRegistry(CrystalConverterRegistry.class.getClassLoader());
+		ConverterRegistry converterRegistry = new ConverterRegistry(ConverterRegistry.class.getClassLoader());
 		converterRegistry.populateAndRegister();
 		List<Converter> converterList = converterRegistry.getConverterList();
 		converterRegistry.createConvertersList();
 		converterList = converterRegistry.getConverterList();
 		// should at least contain org.xmlcml.cml.converters.cml.CML2CMLLiteConverter@76f2d004
 		Assert.assertTrue(converterList.size()>0);
-		boolean hasCmllite = false;
+		boolean hasCmllite = hasConverter(converterList, "org.xmlcml.cml.converters.cml.CML2CMLLiteConverter");
+		Assert.assertTrue("has cmllite", hasCmllite);
+	}
+
+	private boolean hasConverter(List<Converter> converterList, String className) {
 		for (Converter converter : converterList) {
-			if (converter instanceof org.xmlcml.cml.converters.cml.CML2CMLLiteConverter) {
-				hasCmllite = true;
-				break;
+			if (converter.getClass().getName().equals(className)) {
+				return true;
 			}
 		}
-		Assert.assertTrue("has cmllite", hasCmllite);
+		return false;
 	}
 
 	@Test
 	public void testSingletonConverterRegistryList0() {
-		ConverterRegistry converterRegistry = CrystalConverterRegistry.getDefaultConverterRegistry();
+		ConverterRegistry converterRegistry = ConverterRegistry.getDefaultConverterRegistry();
 		List<Converter> converterList = converterRegistry.getConverterList();
 		Assert.assertNotNull(converterList);
-		Assert.assertEquals("converterList", SIZE, converterList.size());
-	}
-
-	@Test
-	public void testSingletonConverterRegistryList() {
-		List<Converter> converterList = CrystalConverterRegistry.getDefaultConverterRegistry().getConverterList();
-		Assert.assertNotNull(converterList);
-		Assert.assertEquals("converterList", SIZE, converterList.size());
+		Assert.assertTrue("converterList", CONVERTER_SIZE <= converterList.size());
 	}
 
 }

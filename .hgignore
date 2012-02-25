@@ -1,7 +1,9 @@
+syntax: regexp
 foo
 ^.project$
 ^.settings/
 ^.classpath$
 ^.hgignore~$
+^.prefs$
 ^target/.*
 /target/

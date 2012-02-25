@@ -1,12 +1,13 @@
 package org.xmlcml.cml.converters.crystal.cif;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
+import org.xmlcml.cml.converters.AbstractConverterModule;
 import org.xmlcml.cml.converters.Converter;
 import org.xmlcml.cml.converters.MimeType;
 import org.xmlcml.cml.converters.MimeType.ObjectType;
-import org.xmlcml.cml.converters.registry.AbstractConverterModule;
 
 /**
  * @author Sam Adams
